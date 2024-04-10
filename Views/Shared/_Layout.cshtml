@@ -137,7 +137,7 @@
     <!-- End of Sidebar -->
 
     <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
+    <a class="scroll-to-top rounded" href="#page-top" style="z-index: 9999;">
         <i class="fas fa-angle-up"></i>
     </a>
 
@@ -377,8 +377,21 @@
 
     <script>
         $(document).ready(function() {
-            $('#dataTable').DataTable();
+            $('#menuTable').DataTable({
+                "ordering": false,
+                columnDefs: [{ width: '15%', targets: 3 }],
+                lengthMenu: [5, 10, 15, 20, 50],
+            });
         });
+
+        $(document).ready(function() {
+            $('#orderTable').DataTable({
+                "ordering": false,
+                columnDefs: [{ width: '15%', targets: 3 }],
+                "lengthChange": false,
+                paging: false
+            });
+        });       
     </script>
 
     @await RenderSectionAsync("Scripts", required: false)

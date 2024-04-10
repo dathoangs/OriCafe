@@ -5,28 +5,47 @@
 
 <div class="container-fluid">
 
-    <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800">Đặt đồ</h1>
-    <table id="dataTable">
+    <table class="table table-bordered" id="menuTable" style="width: 100%;">
         <thead>
             <tr>
                 <th>Tên sản phẩm</th>
                 <th>Loại sản phẩm</th>
                 <th>Giá bán</th>
+                <th>Số lượng</th>
             </tr>
         </thead>
         @foreach (SanPham sanPham in Model.SanPhams){
             <tr>
-                <td>@Html.DisplayFor(modelItem => sanPham.TenSanPham)</td>
+                <td class="ten">@Html.DisplayFor(modelItem => sanPham.TenSanPham)</td>
                 @foreach (LoaiSanPham loaiSanPham in Model.LoaiSanPhams){
                     if(sanPham.IdLoaiSanPham == loaiSanPham.Id){
-                        <td>@Html.DisplayFor(modelItem => loaiSanPham.TenLoaiSanPham)</td>
+                        <td class="loai">@Html.DisplayFor(modelItem => loaiSanPham.TenLoaiSanPham)</td>
                         break;
                     }
                 }
-                <td>@Html.DisplayFor(modelItem => sanPham.GiaBan)</td>
+                <td class="gia">@Html.DisplayFor(modelItem => sanPham.GiaBan)</td>
+                <td class="input-group">
+                    <input type="text" class="form-control soLuong">
+                    <button type="button" class="btn btn-circle btn-success ml-3"><i class="fas fa-plus"></i></button>
+                </td>
             </tr>
         }
+    </table>
+
+    <br>
+
+    <h1 class="h3 mb-4 text-gray-800">Danh sách đặt</h1>
+    <table class="table table-bordered" id="orderTable" style="width: 100%;">
+        <thead>
+            <tr>
+                <th>Tên sản phẩm</th>
+                <th>Loại sản phẩm</th>
+                <th>Giá bán</th>
+                <th>Số lượng</th>
+            </tr>
+        </thead>
+
     </table>
 </div>
 
