@@ -11,6 +11,7 @@ public partial class SanPham
 
     public string TenSanPham { get; set; } = null!;
 
+    public double GiaGoc { get; set; }
     public double GiaBan { get; set; }
 
     public string? MoTa { get; set; }

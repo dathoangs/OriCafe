@@ -40,6 +40,7 @@ public partial class OriCafeContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlServer("Server=DESKTOP-S0RGPSM\\SQLEXPRESS; Initial Catalog=OriCafe; Trusted_Connection=True; Integrated Security=True; MultipleActiveResultSets=true; TrustServerCertificate=True;");
     //S0RGPSM
+    //UNG5FQ1
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -241,6 +242,7 @@ public partial class OriCafeContext : DbContext
             entity.Property(e => e.Id)
                 .ValueGeneratedNever()
                 .HasColumnName("id");
+            entity.Property(e => e.GiaGoc).HasColumnName("gia_goc");
             entity.Property(e => e.GiaBan).HasColumnName("gia_ban");
             entity.Property(e => e.IdLoaiSanPham).HasColumnName("id_loai_san_pham");
             entity.Property(e => e.IdQuan).HasColumnName("id_quan");

@@ -332,6 +332,9 @@ namespace OriCafe.Migrations
                         .HasColumnType("float")
                         .HasColumnName("gia_ban");
 
+                    b.Property<double>("GiaGoc")
+                        .HasColumnType("float");
+
                     b.Property<int?>("IdLoaiSanPham")
                         .HasColumnType("int")
                         .HasColumnName("id_loai_san_pham");
