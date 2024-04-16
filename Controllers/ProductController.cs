@@ -3,15 +3,16 @@ using System.Dynamic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OriCafe.Models;
+using Microsoft.Data.SqlClient;
 
 namespace OriCafe.Controllers;
 
-public class HomeController : Controller
+public class ProductController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
+    private readonly ILogger<ProductController> _logger;
     public OriCafeContext db;
 
-    public HomeController(ILogger<HomeController> logger)
+    public ProductController(ILogger<ProductController> logger)
     {
         _logger = logger;
         db = new OriCafeContext();
@@ -22,20 +23,27 @@ public class HomeController : Controller
         dynamic model = new ExpandoObject();
 
         model.SanPhams = db.SanPhams.ToList();
-        model.LoaiSanPhams = db.LoaiSanPhams.ToList();
         
-        return View(model);
+        return View("Product",model);
     }
+    [HttpPost]
+    public async Task<IActionResult> DeleteProduct(int id)
+    {
+        try
+        {
+        SqlParameter idParam = new SqlParameter("@Id", id);
+        await db.Database.ExecuteSqlRawAsync("EXEC DeleteProduct @Id", idParam);
+        return Ok(); 
+        }
+    catch
+    {
+        return StatusCode(500); 
+    }
+}
 
-    public IActionResult addItem(int id)
+    public IActionResult Privacy()
     {
         return View();
-    }
-
-    [HttpPost]
-    public void order(ReceiveModel model){
-        List<SanPham> sanPhams = db.SanPhams.ToList();
-        
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

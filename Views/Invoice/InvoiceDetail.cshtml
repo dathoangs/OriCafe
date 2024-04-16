@@ -1,0 +1,68 @@
+@model IEnumerable<InvoiceDetail> // Đảm bảo kiểu dữ liệu của model là chính xác
+
+@{
+    ViewData["Title"] = "Invoice Detail";
+    var invoiceId = ViewBag.InvoiceId;
+}
+<div class="container-fluid">
+    <h1 class="h3 mb-4 text-gray-800">Chi tiết hoá đơn @invoiceId</h1>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid"
+                aria-describedby="dataTable_info" style="width: 100%;">
+                <thead>
+                    <tr role="row">
+                        <th>Tên sản phẩm</th>
+                        <th>Số lượng</th>
+                        <th>Gía bán</th>
+                        <th>Thành tiền</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.ten_san_pham</td>
+                            <td>@item.so_luong</td>
+                            <td>@item.gia_ban</td>
+                            <td>@(item.so_luong * item.gia_ban)</td>
+                            
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+@* @if (Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Tên sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Gía bán</th>
+                <th>Thành tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ten_san_pham</td>
+                    <td>@item.so_luong</td>
+                    <td>@item.gia_ban</td>
+                    <td>@(item.so_luong * item.gia_ban)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Chưa có sản phẩm nào được mua</p>
+} *@

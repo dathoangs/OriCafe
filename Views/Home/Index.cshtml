@@ -2,11 +2,9 @@
     ViewData["Title"] = "Home Page";
 }
 @model dynamic
-
 <div class="container-fluid">
-
     <h1 class="h3 mb-4 text-gray-800">Đặt đồ</h1>
-    <table class="table table-bordered" id="menuTable" style="width: 100%;">
+    <table class="table table-bordered" id="menuTable" style="width: 100%;" >
         <thead>
             <tr>
                 <th>Tên sản phẩm</th>
@@ -26,8 +24,8 @@
                 }
                 <td class="gia">@Html.DisplayFor(modelItem => sanPham.GiaBan)</td>
                 <td class="input-group">
-                    <input type="text" class="form-control soLuong">
-                    <button type="button" class="btn btn-circle btn-success ml-3"><i class="fas fa-plus"></i></button>
+                    <input type="number" class="form-control soLuong">
+                    <button type="button" class="btn btn-circle btn-success ml-3" onclick="onClick()"><i class="fas fa-plus"></i></button>
                 </td>
             </tr>
         }
@@ -45,9 +43,101 @@
                 <th>Số lượng</th>
             </tr>
         </thead>
+        <tbody>
 
+        </tbody>
     </table>
+
+    <button class="btn btn-primary mb-3" onclick="order()">Lên đơn</button>
+ 
 </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="~/vendor/jquery/jquery.min.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="~/js/sb-admin-2.min.js"></script>
+
+    <!-- Scripts for Chart and Datatable-->
+    <script src="~/vendor/datatables/jquery.dataTables.js"></script>
+    <script src="~/vendor/datatables/dataTables.bootstrap4.js"></script>
+    <script src="~/vendor/chart.js/Chart.min.js"></script>
+
+
+<script>   
+    var orderItem = [];
+
+    var menuTable = $('#menuTable').DataTable({
+            "ordering": false,
+            columnDefs: [{ width: '15%', targets: 3}],
+            lengthMenu: [5, 10, 15, 20, 50],
+        });
+
+    var orderTable = $('#orderTable').DataTable({
+            "ordering": false,
+            columnDefs: [
+                { width: '15%', targets: 3 }
+            ],
+            "lengthChange": false,
+            paging: false
+        });
+
+    function onClick(){
+        //console.log(event.target.parentElement.parentElement);
+        let parent = event.target.parentElement;
+        while (parent.className != "odd" && parent.className != "even"){
+            parent = parent.parentElement;
+            if (!parent.className) break;
+        }
+
+        if (parent.children[3].children[0].value == 0) return;
+
+        if (!orderItem.includes(parent._DT_RowIndex)){
+            orderItem.push(parent._DT_RowIndex);
+        } else return;
+
+        orderTable.row
+            .add([
+                parent.children[0].innerHTML,
+                parent.children[1].innerHTML,
+                parent.children[2].innerHTML,
+                [parent.children[3].children[0].value.replace(/^0+/, ''), "<button type=\"button\" class=\"btn btn-circle btn-danger ml-3\" onclick=\"removeOnClick()\"><i class=\"fas fa-trash\"></i></button>"]
+            ])
+            .draw(false);      
+    }
+
+    function removeOnClick(){
+        let parent = event.target.parentElement;
+        while (parent.className != "odd" && parent.className != "even"){
+            parent = parent.parentElement;
+        }
+
+        orderItem.splice(parent._DT_RowIndex-1, 1);
+
+        orderTable.row(parent._DT_RowIndex).remove().draw();
+    }
+
+    function order(){
+        $.ajax({
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            type: 'POST',
+            url: "@Url.Action("order", "Home")",
+            data: { array : orderItem },
+            success: function () {
+                console.log("SUCCESS")
+            },
+            failure: function (response) {
+                console.log(response)
+            },
+            traditional: true
+        });       
+    }
+</script>
 
 
 
