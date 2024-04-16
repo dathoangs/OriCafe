@@ -371,28 +371,9 @@
     <script src="~/js/sb-admin-2.min.js"></script>
 
     <!-- Scripts for Chart and Datatable-->
-    <script src="~/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="~/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="~/vendor/datatables/jquery.dataTables.js"></script>
+    <script src="~/vendor/datatables/dataTables.bootstrap4.js"></script>
     <script src="~/vendor/chart.js/Chart.min.js"></script>
-
-    <script>
-        $(document).ready(function() {
-            $('#menuTable').DataTable({
-                "ordering": false,
-                columnDefs: [{ width: '15%', targets: 3 }],
-                lengthMenu: [5, 10, 15, 20, 50],
-            });
-        });
-
-        $(document).ready(function() {
-            $('#orderTable').DataTable({
-                "ordering": false,
-                columnDefs: [{ width: '15%', targets: 3 }],
-                "lengthChange": false,
-                paging: false
-            });
-        });       
-    </script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
