@@ -37,7 +37,7 @@ public class HomeController : Controller
     public void order(ReceiveModel model){
         List<SanPham> sanPhams = db.SanPhams.ToList();
 
-
+        
         
     }
 
@@ -49,6 +49,6 @@ public class HomeController : Controller
 }
 
 public class ReceiveModel{
-    
+
    public List<int> array {get; set;}
 }
