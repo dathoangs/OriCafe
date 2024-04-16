@@ -23,7 +23,7 @@ public class HomeController : Controller
 
         model.SanPhams = db.SanPhams.ToList();
         model.LoaiSanPhams = db.LoaiSanPhams.ToList();
-        
+
         return View(model);
     }
 
