@@ -291,3 +291,7 @@ GO
 
 exec DeleteProduct @Id = 15
 select * from San_Pham
+
+ALTER TABLE San_Pham
+ADD gia_goc FLOAT;
+
