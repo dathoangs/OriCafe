@@ -1,0 +1,55 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+@model IEnumerable<InvoiceView>
+
+
+<div class="container-fluid">
+    <h1 class="h3 mb-4 text-gray-800">Hoá đơn</h1>
+     <div class="row mb-3">
+        <div class="col-md-6">
+            <input type="text" id="searchInput" class="form-control" placeholder="Nhập tên khách hàng">
+        </div>
+        <div class="col-md-6">
+            <button id="searchButton" class="btn btn-primary">Tìm kiếm</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid"
+                aria-describedby="dataTable_info" style="width: 100%;">
+                <thead>
+                    <tr role="row">
+                        <th>Tên quán</th>
+                        <th>Tên khách hàng</th>
+                        <th>Tên nhân viên</th>
+                        <th>Ngày tạo</th>
+                        <th>Tổng tiền</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var invoice in Model)
+                    {
+                        <tr ondblclick="rowDoubleClick('@invoice.id')">
+                            <td>@invoice.ten_quan</td>
+                            <td>@invoice.ten_khach_hang</td>
+                            <td>@invoice.ten_nhan_vien</td>
+                            <td>@invoice.ngay_tao</td>
+                            <td>@invoice.tong_tien</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    document.getElementById("searchButton").addEventListener("click", function () {
+        var searchString = document.getElementById("searchInput").value;
+        window.location.href = "/Invoice/Index?searchString=" + searchString;
+    });
+    function rowDoubleClick(id) {
+        window.location.href = "/Invoice/InvoiceDetail?id=" + id;
+    }
+</script>

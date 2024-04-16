@@ -34,12 +34,15 @@ public partial class OriCafeContext : DbContext
     public virtual DbSet<SanPham> SanPhams { get; set; }
 
     public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
+    public virtual DbSet<InvoiceView> InvoiceViews { get; set; }
+    public virtual DbSet<InvoiceDetail> InvoiceDetails { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Server=DESKTOP-S0RGPSM\\SQLEXPRESS; Initial Catalog=OriCafe; Trusted_Connection=True; Integrated Security=True; MultipleActiveResultSets=true; TrustServerCertificate=True;");
+        => optionsBuilder.UseSqlServer("Server=DESKTOP-8TISM2T\\SQLEXPRESS; Initial Catalog=OriCafe; Trusted_Connection=True; Integrated Security=True; MultipleActiveResultSets=true; TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        // modelBuilder.Entity<InvoiceView>().HasNoKey();
         modelBuilder.Entity<ChiTietHoaDon>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Chi_Tiet__3213E83F7838515E");
@@ -289,4 +292,5 @@ public partial class OriCafeContext : DbContext
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+   
 }
