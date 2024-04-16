@@ -36,8 +36,6 @@ public class HomeController : Controller
     [HttpPost]
     public void order(ReceiveModel model){
         List<SanPham> sanPhams = db.SanPhams.ToList();
-
-
         
     }
 
@@ -46,9 +44,4 @@ public class HomeController : Controller
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
-}
-
-public class ReceiveModel{
-    
-   public List<int> array {get; set;}
 }

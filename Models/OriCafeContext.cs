@@ -38,7 +38,8 @@ public partial class OriCafeContext : DbContext
     public virtual DbSet<InvoiceDetail> InvoiceDetails { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Server=DESKTOP-8TISM2T\\SQLEXPRESS; Initial Catalog=OriCafe; Trusted_Connection=True; Integrated Security=True; MultipleActiveResultSets=true; TrustServerCertificate=True;");
+        => optionsBuilder.UseSqlServer("Server=DESKTOP-S0RGPSM\\SQLEXPRESS; Initial Catalog=OriCafe; Trusted_Connection=True; Integrated Security=True; MultipleActiveResultSets=true; TrustServerCertificate=True;");
+    //S0RGPSM
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

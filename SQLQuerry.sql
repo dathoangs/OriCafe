@@ -63,7 +63,8 @@ USE OriCafe;
      id_quan INT FOREIGN KEY REFERENCES Quan_Ca_Phe(id)
  );
 
- CREATE TRIGGER UpdateTotalAmount
+GO
+CREATE TRIGGER UpdateTotalAmount
 ON Chi_Tiet_Hoa_Don
 AFTER INSERT, UPDATE, DELETE
 AS
@@ -85,8 +86,12 @@ BEGIN
         );
     END
 END;
+
+GO
 select * from Chi_Tiet_Hoa_Don
- UPDATE Hoa_Don
+
+GO
+UPDATE Hoa_Don
 SET tong_tien = NULL;
 -- -- Bảng Chi tiết hóa đơn
  CREATE TABLE Chi_Tiet_Hoa_Don (
@@ -132,7 +137,7 @@ VALUES
 
 update  Quan_Ca_Phe
 set email= N'patuan1303@gmail.com'
-where id = 1
+where id = 2
 
 select * from Nhan_Vien
 
@@ -140,13 +145,13 @@ SELECT * FROM Quan_Ca_Phe
 
 INSERT Nhan_Vien (ten_nhan_vien, dia_chi, dien_thoai, trang_thai, id_quan)
 VALUES
-('Ngọc', 'Hà Nội', '0123456789', 1, 1),
-('Tuấn Anh', 'Hà Nội', '0123456789', 1, 1);
-update  Nhan_Vien
-set ten_nhan_vien= N'Lê Văn Huyên',dia_chi=N'Hà Nội'
-where id = 4
+(N'Ngọc', N'Hà Nội', '0123456789', 1, 2),
+(N'Tuấn Anh', N'Hà Nội', '0123456789', 1, 2);
+-- update  Nhan_Vien
+-- set ten_nhan_vien= N'Lê Văn Huyên',dia_chi=N'Hà Nội'
+-- where id = 4
 
- INSERT Nhan_Vien (ten_nhan_vien, dia_chi, dien_thoai, trang_thai, id_quan)
+INSERT Nhan_Vien (ten_nhan_vien, dia_chi, dien_thoai, trang_thai, id_quan)
 VALUES
 (N'Lê Huyền Trang', N'Hà Nội', '0123456789', 1, 2),
 (N'Lê Tuấn Anh',N'Hà Nội', '0123456789', 1, 2),
@@ -186,15 +191,15 @@ VALUES
 
 INSERT Khach_Hang (ten_khach_hang, dia_chi, dien_thoai, email, diem_tich_luy,id_quan)
 VALUES
-(N'Nguyễn Thị Vân Anh', 'Hà Nội', '0123456789', 'nguyenvananh290903@gmail.com', 20,1),
-(N'Lê Mai Linh', 'Hà Nội', '0123456789', '19A10010062@students.hou.edu.vn', 34,1),
-(N'Phạm Thị Anh Phiên', 'Hà Nội', '0123456789', 'Phien301002@gmail.com', 25,1),
-(N'Đỗ Hải Nam', 'Hà Nội', '0123456789', 'daddyhome1811@gmail.com', 27,1),
-(N'Lê Đức Mạnh', 'Hà Nội', '0123456789', 'manhdz1709@gmail.com', 54,1),
-(N'Phạm Tuấn Phong', 'Hà Nội', '0123456789', 'mochimochipo1122@gmail.com', 32,1),
-(N'Đoàn Thị Thu Thảo', 'Hà Nội', '0123456789', 'vietanhdj2k3@gmail.com', 2,1),
-(N'Nguyễn Văn Tùng', 'Hà Nội', '0123456789', 'tungnguyentn12345@gmail.com', 19,1),
-(N'Vũ Việt Anh', 'Hà Nội', '0123456789', 'vanh3117@gmail.com', 42,1);
+(N'Nguyễn Thị Vân Anh', N'Hà Nội', '0123456789', 'nguyenvananh290903@gmail.com', 20,1),
+(N'Lê Mai Linh', N'Hà Nội', '0123456789', '19A10010062@students.hou.edu.vn', 34,1),
+(N'Phạm Thị Anh Phiên', N'Hà Nội', '0123456789', 'Phien301002@gmail.com', 25,1),
+(N'Đỗ Hải Nam', N'Hà Nội', '0123456789', 'daddyhome1811@gmail.com', 27,1),
+(N'Lê Đức Mạnh', N'Hà Nội', '0123456789', 'manhdz1709@gmail.com', 54,1),
+(N'Phạm Tuấn Phong', N'Hà Nội', '0123456789', 'mochimochipo1122@gmail.com', 32,1),
+(N'Đoàn Thị Thu Thảo', N'Hà Nội', '0123456789', 'vietanhdj2k3@gmail.com', 2,1),
+(N'Nguyễn Văn Tùng', N'Hà Nội', '0123456789', 'tungnguyentn12345@gmail.com', 19,1),
+(N'Vũ Việt Anh', N'Hà Nội', '0123456789', 'vanh3117@gmail.com', 42,1);
 
 SELECT * FROM Khach_Hang
 
@@ -211,15 +216,15 @@ VALUES
 
 
 SELECT * FROM Loai_San_Pham
- CREATE TABLE Hoa_Don (
-     id int PRIMARY KEY IDENTITY(1,1),
-     ngay_tao datetime NOT NULL,
-     tong_tien int NOT NULL,
-     trang_thai int NOT NULL,
-     id_nhan_vien int FOREIGN KEY REFERENCES Nhan_Vien(id),
-     id_khach_hang int FOREIGN KEY REFERENCES Khach_Hang(id),
-     id_quan INT FOREIGN KEY REFERENCES Quan_Ca_Phe(id)
- );
+-- CREATE TABLE Hoa_Don (
+--     id int PRIMARY KEY IDENTITY(1,1),
+--     ngay_tao datetime NOT NULL,
+--     tong_tien int NOT NULL,
+--     trang_thai int NOT NULL,
+--     id_nhan_vien int FOREIGN KEY REFERENCES Nhan_Vien(id),
+--     id_khach_hang int FOREIGN KEY REFERENCES Khach_Hang(id),
+--     id_quan INT FOREIGN KEY REFERENCES Quan_Ca_Phe(id)
+-- );
 
 
 INSERT Hoa_Don (ngay_tao, tong_tien,trang_thai,id_nhan_vien,id_khach_hang,id_quan)
@@ -227,6 +232,8 @@ VALUES
 ('2024-04-08',5790000,1,1,1,1);
 
 SELECT * FROM Chi_Tiet_Hoa_Don
+SELECT * FROM Hoa_Don
+SELECT * FROM San_Pham
 
 delete 
 from Chi_Tiet_Hoa_Don
@@ -234,20 +241,22 @@ where id=2
 
 INSERT Chi_Tiet_Hoa_Don (so_luong, gia_ban,id_hoa_don,id_san_pham)
 VALUES
-(5,10000,1,15);
+(5,10000,1,11);
 
-
+GO
 Create proc Proc_HoaDon
 as
-begin
-select Hoa_Don.id,Hoa_Don.id_quan,Hoa_Don.id_khach_hang,Hoa_Don.id_nhan_vien,Quan_Ca_Phe.ten_quan,Khach_Hang.ten_khach_hang,Nhan_Vien.ten_nhan_vien,Hoa_Don.ngay_tao,Hoa_Don.tong_tien,Hoa_Don.trang_thai
-from Hoa_Don,Nhan_Vien,Khach_Hang,Quan_Ca_Phe
-where Hoa_Don.id_khach_hang = Khach_Hang.id and Hoa_Don.id_nhan_vien = Nhan_Vien.id and Hoa_Don.id_quan = Quan_Ca_Phe.id
-end
+    begin
+        select Hoa_Don.id,Hoa_Don.id_quan,Hoa_Don.id_khach_hang,Hoa_Don.id_nhan_vien,Quan_Ca_Phe.ten_quan,Khach_Hang.ten_khach_hang,Nhan_Vien.ten_nhan_vien,Hoa_Don.ngay_tao,Hoa_Don.tong_tien,Hoa_Don.trang_thai
+        from Hoa_Don,Nhan_Vien,Khach_Hang,Quan_Ca_Phe
+        where Hoa_Don.id_khach_hang = Khach_Hang.id and Hoa_Don.id_nhan_vien = Nhan_Vien.id and Hoa_Don.id_quan = Quan_Ca_Phe.id
+    end
+GO
 
 exec Proc_HoaDon
 drop proc Proc_HoaDon
 
+GO
 CREATE PROCEDURE Proc_GetInvoiceDetail
     @id INT
 AS
@@ -265,9 +274,12 @@ BEGIN
     WHERE 
 		Chi_Tiet_Hoa_Don.id_san_pham = San_Pham.id  and @id=Chi_Tiet_Hoa_Don.id_hoa_don;
 END
+GO
+
 drop proc Proc_GetInvoiceDetail
 exec Proc_GetInvoiceDetail @id='1'
 
+GO
 CREATE PROCEDURE DeleteProduct
     @Id INT
 AS 
@@ -275,6 +287,7 @@ BEGIN
     DELETE FROM San_Pham
     WHERE San_Pham.id = @Id;
 END
+GO
 
 exec DeleteProduct @Id = 15
 select * from San_Pham
