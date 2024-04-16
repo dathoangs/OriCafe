@@ -24,12 +24,21 @@ public class HomeController : Controller
         model.SanPhams = db.SanPhams.ToList();
         model.LoaiSanPhams = db.LoaiSanPhams.ToList();
         
+        
         return View(model);
     }
 
-    public IActionResult Privacy()
+    public IActionResult addItem(int id)
     {
         return View();
+    }
+
+    [HttpPost]
+    public void order(ReceiveModel model){
+        List<SanPham> sanPhams = db.SanPhams.ToList();
+
+
+        
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -37,4 +46,9 @@ public class HomeController : Controller
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
+}
+
+public class ReceiveModel{
+    
+   public List<int> array {get; set;}
 }
