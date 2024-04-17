@@ -227,9 +227,13 @@ SELECT * FROM Loai_San_Pham
 -- );
 
 
+SELECT * FROM Hoa_Don
 INSERT Hoa_Don (ngay_tao, tong_tien,trang_thai,id_nhan_vien,id_khach_hang,id_quan)
 VALUES
 ('2024-04-08',5790000,1,1,1,1);
+INSERT Hoa_Don (ngay_tao,trang_thai,id_nhan_vien,id_khach_hang,id_quan)
+VALUES
+('2024-04-10',1,2,3,1);
 
 SELECT * FROM Chi_Tiet_Hoa_Don
 SELECT * FROM Hoa_Don
@@ -242,6 +246,9 @@ where id=2
 INSERT Chi_Tiet_Hoa_Don (so_luong, gia_ban,id_hoa_don,id_san_pham)
 VALUES
 (5,10000,1,11);
+INSERT Chi_Tiet_Hoa_Don (so_luong, gia_ban,id_hoa_don,id_san_pham)
+VALUES
+(8,45000,2,13);
 
 GO
 Create proc Proc_HoaDon

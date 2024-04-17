@@ -33,7 +33,7 @@ public class HomeController : Controller
     }
 
     [HttpPost]
-    public void order(ReceiveModel model){
+    public void order(int[] model){
         List<SanPham> sanPhams = db.SanPhams.ToList();
         
     }
