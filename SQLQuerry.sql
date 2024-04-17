@@ -298,3 +298,23 @@ GO
 
 exec DeleteProduct @Id = 15
 select * from San_Pham
+
+ALTER TABLE San_Pham
+ADD gia_goc FLOAT;
+
+SELECT * FROM Tai_Khoan
+
+--  CREATE TABLE Tai_Khoan (
+--      id int PRIMARY KEY IDENTITY(1,1),
+--      ten_tai_khoan varchar(255) NOT NULL,
+--      mat_khau varchar(255) NOT NULL,
+--      vai_tro int NOT NULL,
+--      trang_thai int NOT NULL,
+--      id_quan int FOREIGN KEY REFERENCES Quan_Ca_Phe(id),
+--      id_nhan_vien int FOREIGN KEY REFERENCES Nhan_Vien(id)
+--  );
+
+
+-- INSERT Tai_Khoan (ten_tai_khoan, mat_khau, vai_tro, trang_thai, id_quan, id_nhan_vien)
+-- VALUES
+-- ('admin', 'admin', 0, 1, 1, 1)
